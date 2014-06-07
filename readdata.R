@@ -5,10 +5,14 @@
 
 readdata <- function() {
 
+temp <- tempfile()
+#url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+#download.file(url, "power.dat")
 D <- read.table(
-		file = "household_power_consumption.txt",
+		file = unz("exdata-data-household_power_consumption.zip", "household_power_consumption.txt"),
 		sep = ";",
 		header = TRUE)
+unlink(temp)
 
 D$DateTime <- strptime(paste(D$Date, D$Time), "%d/%m/%Y %H:%M:%S")
 
